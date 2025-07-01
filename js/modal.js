@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Elementos principales
     const modal = document.getElementById("miModal");
     const btn = document.getElementById("abrirModal");
+    const btn1 = document.getElementById("abrirModal1");
+    const btn2 = document.getElementById("abrirModal2");
+    const btn3 = document.getElementById("abrirModal3");
+    const btn4 = document.getElementById("abrirModal4");
+    const btn5 = document.getElementById("abrirModal5");
     const spanCerrar = document.getElementsByClassName("cerrar")[0];
     
     // Elementos para el video ampliado
@@ -10,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoGrande = document.getElementById("videoGrande");
     
     // Abrir modal principal
-    btn.onclick = function() {
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden";
-    }
+    btn.onclick = function() {modal.style.display = "block"; document.body.style.overflow = "hidden";}
+    btn1.onclick = function() {modal.style.display = "block"; document.body.style.overflow = "hidden";}
+    btn2.onclick = function() {modal.style.display = "block"; document.body.style.overflow = "hidden";}
+    btn3.onclick = function() {modal.style.display = "block"; document.body.style.overflow = "hidden";}
+    btn4.onclick = function() {modal.style.display = "block"; document.body.style.overflow = "hidden";}
+    btn5.onclick = function() {modal.style.display = "block"; document.body.style.overflow = "hidden";}
     
     // Cerrar modal principal
     spanCerrar.onclick = function() {
