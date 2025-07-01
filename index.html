@@ -183,7 +183,7 @@
             color: #333;
         }
         
-        /* Estilo del botón */
+        /* Estilo del botón 
         #abrirModal {
             padding: 6px 24px;
             background-color: #3498db;
@@ -196,6 +196,22 @@
         }
         
         #abrirModal:hover {
+            background-color: #2980b9;
+        }*/
+
+        /* Clase Estilo del botón */
+        .abrirModalClass {
+            padding: 6px 45px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .abrirModalClass:hover {
             background-color: #2980b9;
         }
         
@@ -319,11 +335,18 @@
                     </video>
                 </div>
                 <div class="media-container">
-                    <span class="media-tipo">Videodde</span>
-                    <!--img src="https://via.placeholder.com/300?text=Video+Thumb+1" class="video-thumb" data-video-src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4" alt="Miniatura video 1"-->
-                    <img src="galeria/VideoCercoElPlacer2.mp4" class="video-thumb" data-video-src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4" alt="Miniatura video 1">
+                    <span class="media-tipo">Video</span>
+                    <video controls>
+                        <!--source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4"-->
+                        <source src="galeria/PortonElectrico.mp4" type="video/mp4">
+                    </video>
                 </div>
-                
+                <!--
+                <div class="media-container">
+                    <span class="media-tipo">Videodde</span>
+                    <img src="https://via.placeholder.com/300?text=Video+Thumb+1" class="video-thumb" data-video-src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4" alt="Miniatura video 1">
+                </div>
+                -->
                 <!-- Más elementos -->
                 <div class="media-container">
                     <!--span class="media-tipo">Imagen</span-->
@@ -418,7 +441,7 @@
                                 Diseño de sistemas para interiores y exteriores.
                             </p>
                             <!--a href="abrirModal" class="btn btn-sm btn-primary">Más información</a-->
-                            <button id="abrirModal">Mas</button>
+                            <button id="abrirModal" class="abrirModalClass">Mas</button>
                         </div>
                     </div>
                 </div>
@@ -433,7 +456,7 @@
                             <h3 class="h4">Portones Eléctricos</h3>
                             <p class="card-text">Sistemas automatizados para estacionamientos con controles remotos, sensores de seguridad y mantenimiento preventivo.</p>
                             <!--a href="#contacto" class="btn btn-sm btn-primary">Más información</a-->
-                            <button id="abrirModal">Mas</button>
+                            <button id="abrirModal1" class="abrirModalClass">Mas</button>
                         </div>
                     </div>
                 </div>
@@ -451,7 +474,8 @@
                             consumo energético y seguro (cumpliendo normas internacionales).<br>
                             Integración con alarmas y CCTV.<br>
                             </p>
-                            <a href="#contacto" class="btn btn-sm btn-primary">Más información</a>
+                            <!--a href="#contacto" class="btn btn-sm btn-primary">Más información</a-->
+                            <button id="abrirModal2" class="abrirModalClass">Mas</button>
                         </div>
                     </div>
                 </div>
@@ -465,7 +489,8 @@
                             </div>
                             <h3 class="h4">Sistemas de Alarmas</h3>
                             <p class="card-text">Soluciones personalizadas para hogares y negocios con monitoreo 24/7, sensores de movimiento y conexión a central de alarmas.</p>
-                            <a href="#contacto" class="btn btn-sm btn-primary">Más información</a>
+                            <!--a href="#contacto" class="btn btn-sm btn-primary">Más información</a-->
+                            <button id="abrirModal3" class="abrirModalClass">Mas</button>
                         </div>
                     </div>
                 </div>
@@ -477,9 +502,10 @@
                             <div class="service-icon">
                                 <i class="fas fa-code"></i>
                             </div>
-                            <h3 class="h4">Desarrollo Web</h3>
-                            <p class="card-text">Diseño y desarrollo de páginas web profesionales, responsive y optimizadas para SEO que impulsan tu presencia digital.</p>
-                            <a href="#contacto" class="btn btn-sm btn-primary">Más información</a>
+                            <h3 class="h4">Desarrollo Web/Sistemas</h3>
+                            <p class="card-text">Diseño y desarrollo de páginas/Sistemas web de Vanguardia, minimalista, adaptado a las necesidades actuales, impulsan tu presencia digital.</p>
+                            <!--a href="#contacto" class="btn btn-sm btn-primary">Más información</a-->
+                            <button id="abrirModal4" class="abrirModalClass">Mas</button>
                         </div>
                     </div>
                 </div>
@@ -491,9 +517,14 @@
                             <div class="service-icon">
                                 <i class="fas fa-laptop-code"></i>
                             </div>
-                            <h3 class="h4">Desarrollo de Sistemas</h3>
-                            <p class="card-text">Software personalizado para automatizar procesos, gestionar inventarios, clientes y mejorar la eficiencia operativa.</p>
-                            <a href="#contacto" class="btn btn-sm btn-primary">Más información</a>
+                            <h3 class="h4">Adicionales</h3>
+                            <p class="card-text">
+                                Control accesos (porteros eléctricos, lectores huella/tarjeta).<br>
+                                Automatización de seguridad para hogares inteligentes.<br>
+                                Mantenimiento preventivo y correctivo.
+                            </p>
+                            <!--a href="#contacto" class="btn btn-sm btn-primary">Más información</a-->
+                            <button id="abrirModal5" class="abrirModalClass">Mas</button>
                         </div>
                     </div>
                 </div>
