@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mujicam's Security - Sistemas de Seguridad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .top-bar {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-bar button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .categories {
+            background-color: white;
+            padding: 15px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .categories h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .category-list {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+        }
+        
+        .category-item {
+            min-width: 120px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .category-item:hover {
+            border-color: #3498db;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #2980b9;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .pagination a {
+            color: #3498db;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+        
+        .pagination a.active {
+            background-color: #3498db;
+            color: white;
+            border: 1px solid #3498db;
+        }
+        
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+        
+        /* Modal para imagen ampliada */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .modal-content {
+            display: block;
+            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 50px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+        }
+        .logo {
+            height: 99px;
+            border-radius: 10% / 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="images/logo-bn.jpeg" alt="Mujicam's Security" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Carrito (0)</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar productos...">
+        <button>Buscar</button>
+    </div>
+    
+    <div class="categories">
+        <h2>Categorías</h2>
+        <div class="category-list">
+            <div class="category-item">Cercos Eléctricos</div>
+            <div class="category-item">Cámaras CCTV</div>
+            <div class="category-item">Portones</div>
+            <div class="category-item">Alarmas</div>
+            <div class="category-item">Kits Completos</div>
+            <div class="category-item">Accesorios</div>
+        </div>
+    </div>
+    
+    <div class="products">
+        <!-- Producto 1 -->
+        <div class="product-card">
+            <img src="galeria/camara1.jpeg" alt="Cerca eléctrica" class="product-image" onclick="openModal('galeria/camara1.jpeg')">
+            <div class="product-info">
+                <h3 class="product-title">Kit Cerca Eléctrica 500 metros</h3>
+                <p class="product-price">$1,250.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        
+        <!-- Producto 2 -->
+        <div class="product-card">
+            <img src="galeria/camara2.jpeg" alt="Cámara CCTV" class="product-image" onclick="openModal('galeria/camara2.jpeg')">
+            <div class="product-info">
+                <h3 class="product-title">DVR Hd 4 Canales</h3>
+                <p class="product-price">$850.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        
+        <!-- Producto 3 -->
+        <div class="product-card">
+            <img src="galeria/motor1.jpeg" alt="Control de portón" class="product-image" onclick="openModal('galeria/motor1.jpeg')">
+            <div class="product-info">
+                <h3 class="product-title">Motor para Portón 500kg</h3>
+                <p class="product-price">$3,200.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        
+        <!-- Producto 4 -->
+        <div class="product-card">
+            <img src="galeria/alarma1.jpg" alt="Alarma" class="product-image" onclick="openModal('galeria/alarma1.jpg')">
+            <div class="product-info">
+                <h3 class="product-title">Kit Alarma Inalámbrica 8 zonas</h3>
+                <p class="product-price">$1,750.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        
+        <!-- Producto 5 -->
+        <div class="product-card">
+            <img src="galeria/laptop.jpg" alt="DVR" class="product-image" onclick="openModal('galeria/laptop.jpeg')">
+            <div class="product-info">
+                <h3 class="product-title">Laptop Hp I7 32Gb Ram/  512 SSD</h3>
+                <p class="product-price">$2,100.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        
+        <!-- Producto 6 -->
+        <div class="product-card">
+            <img src="galeria/laptop2.jpg" alt="Sensor" class="product-image" onclick="openModal('galeria/laptop2.jpg')">
+            <div class="product-info">
+                <h3 class="product-title">SAMSUNG Computadora portátil Galaxy Book4 Pro de 16 pulgadas, procesador Intel Core 7</h3>
+                <p class="product-price">$450.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        <!-- Producto 7 -->
+        <div class="product-card">
+            <img src="galeria/sensor.jpeg" alt="Sensor" class="product-image" onclick="openModal('galeria/sensor.jpeg')">
+            <div class="product-info">
+                <h3 class="product-title">Sensor de Movimiento Exterior</h3>
+                <p class="product-price">$450.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+        <!-- Producto 8 -->
+        <div class="product-card">
+            <img src="galeria/pendrive.jpg" alt="Sensor" class="product-image" onclick="openModal('galeria/pendrive.jpg')">
+            <div class="product-info">
+                <h3 class="product-title">PENDRIVE KINGSTON 64GB DTX/64GB USB 3.2</h3>
+                <p class="product-price">$5.00</p>
+                <button class="add-to-cart">Contactanos</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">&raquo;</a>
+    </div>
+    
+    <!-- Modal para imagen ampliada -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <script>
+        // Función para abrir el modal con la imagen ampliada
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+        }
+        
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+        
+        // Cerrar el modal al hacer clic fuera de la imagen
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+        // Función simple para añadir al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productTitle = this.parentElement.querySelector('.product-title').textContent;
+                const productPrice = this.parentElement.querySelector('.product-price').textContent;
+                
+                alert(`Producto añadido al carrito:\n${productTitle}\n${productPrice}`);
+                
+                // Aquí podrías agregar lógica para actualizar el contador del carrito
+            });
+        });
+    </script>
+</body>
+</html>
